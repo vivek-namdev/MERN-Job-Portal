@@ -1,6 +1,7 @@
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   // Declare `user` variable outside of the JSX
@@ -28,8 +29,8 @@ const Navbar = () => {
           {/* Conditional Rendering */}
           {!user ? (
             <div className="flex items-center gap-2">
-              <Button variant="outline">Login</Button>
-              <Button className="bg-[#6A38C2]">Signup</Button>
+              <Link to="/login"><Button variant="outline">Login</Button></Link>
+              <Link to="/signup"><Button className="bg-[#6A38C2]">Signup</Button></Link>
             </div>
           ) : (
             <Popover>
