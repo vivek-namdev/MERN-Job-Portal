@@ -21,9 +21,9 @@ const Navbar = () => {
         <div className="flex items-center gap-8">
           {/* Navigation Links */}
           <ul className="flex items-center font-medium gap-6">
-            <li className="hover:text-[#F83002] cursor-pointer">Home</li>
-            <li className="hover:text-[#F83002] cursor-pointer">Jobs</li>
-            <li className="hover:text-[#F83002] cursor-pointer">Browse</li>
+            <li className="hover:text-[#F83002] cursor-pointer"><Link to={"/"}>Home</Link></li>
+            <li className="hover:text-[#F83002] cursor-pointer"><Link to={"/jobs"}>Jobs</Link></li>
+            <li className="hover:text-[#F83002] cursor-pointer"><Link to={"/browse"}>Browse</Link></li>
           </ul>
 
           {/* Conditional Rendering */}
