@@ -2,10 +2,11 @@ import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   // Declare `user` variable outside of the JSX
-  const user = false;
+  const {user} = useSelector(store=>store.auth);
 
   return (
     <div className="bg-white shadow">
