@@ -1,12 +1,32 @@
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
+import axios from "axios";
+import { USER_API_END_POINT } from "@/utils/constant";
+import { setUser } from "@/redux/authSlice";
 
 const Navbar = () => {
   // Declare `user` variable outside of the JSX
   const {user} = useSelector(store=>store.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logOutHandler = async () => {
+    try {
+      const res = await axios.get(`${USER_API_END_POINT}/logout`, {withCredentials: true});
+      if(res.data.success) {
+        dispatch(setUser(null));
+        navigate("/");
+        toast.success(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
+  }
 
   return (
     <div className="bg-white shadow">
@@ -39,7 +59,7 @@ const Navbar = () => {
                 <Avatar className="cursor-pointer w-10 h-10">
                   <AvatarImage
                     className="rounded-full"
-                    src="https://github.com/shadcn.png"
+                    src={user?.profile?.profilePhoto}
                     alt="Profile Picture"
                   />
                 </Avatar>
@@ -50,14 +70,14 @@ const Navbar = () => {
                   <Avatar className="cursor-pointer w-12 h-12">
                     <AvatarImage
                       className="rounded-full"
-                      src="https://github.com/shadcn.png"
+                      src={user?.profile?.profilePhoto}
                       alt="Profile Picture"
                     />
                   </Avatar>
                   <div>
-                    <h1 className="font-medium text-lg">Vivek Namdev</h1>
+                    <h1 className="font-medium text-lg">{user?.fullname}</h1>
                     <p className="text-sm text-gray-500">
-                      Lorem ipsum dolor sit amet.
+                      {user?.bio}
                     </p>
                   </div>
                 </div>
@@ -66,7 +86,7 @@ const Navbar = () => {
                   <Button variant="link" className="text-blue-500 hover:underline">
                     <Link to={"/profile"}>View Profile</Link>
                   </Button>
-                  <Button variant="link" className="text-red-500 hover:underline">
+                  <Button onClick={logOutHandler} variant="link" className="text-red-500 hover:underline">
                     Logout
                   </Button>
                 </div>
