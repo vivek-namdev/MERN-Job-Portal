@@ -1,7 +1,10 @@
 import { Bookmark } from "lucide-react";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
+import { useNavigate } from "react-router-dom";
 
 const Job = () => {
+  const navigate = useNavigate();
+  const jobId = "asdfghjkl";
   return (
     <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
       {/* Job Metadata */}
@@ -54,7 +57,7 @@ const Job = () => {
 
       {/* Action Buttons */}
       <div className="flex gap-4 mt-6">
-        <button className="inline-flex items-center justify-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold text-sm rounded transition">
+        <button onClick={() => navigate(`/description/${jobId}`)} className="inline-flex items-center justify-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold text-sm rounded transition">
           Details
         </button>
         <button className="inline-flex items-center justify-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold text-sm rounded transition">
