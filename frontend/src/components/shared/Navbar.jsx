@@ -64,7 +64,7 @@ const Navbar = () => {
                 {/* Buttons */}
                 <div className="flex flex-col gap-3">
                   <Button variant="link" className="text-blue-500 hover:underline">
-                    View Profile
+                    <Link to={"/profile"}>View Profile</Link>
                   </Button>
                   <Button variant="link" className="text-red-500 hover:underline">
                     Logout
