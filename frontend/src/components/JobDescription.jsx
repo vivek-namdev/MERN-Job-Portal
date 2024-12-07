@@ -1,9 +1,14 @@
 import { Ghost } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
+import { useParams } from "react-router-dom";
+import useGetSingleJob from "@/hooks/useGetSingleJob";
 
 const JobDescription = () => {
   const isApplied = true;
+  const params= useParams();
+  const jobId = params.id;
+  useGetSingleJob(jobId);
 
   return (
     <div className="p-6 max-w-lg mx-auto bg-white rounded-lg shadow-md">
